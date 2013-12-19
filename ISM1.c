@@ -71,7 +71,7 @@
 
 #include <pocketsphinx.h>
 
-
+char const *_myvar;
 
 static const arg_t cont_args_def[] = {
     POCKETSPHINX_OPTIONS,
@@ -128,8 +128,7 @@ print_word_times(int32 start)
 /*
  * Continuous recognition from a file
  */
-static void
-recognize_from_file() {
+static void recognize_from_file() {
     cont_ad_t *cont;
     ad_rec_t file_ad = {0};
     int16 adbuf[4096];
@@ -232,14 +231,13 @@ sleep_msec(int32 ms)
  * 	   print utterance result;
  *     }
  */
-static void
-recognize_from_microphone()
+static void recognize_from_microphone()
 {
     ad_rec_t *ad;
     int16 adbuf[4096];
     int32 k, ts, rem;
     char const *hyp;
-    char const *_myvar;
+    
     char const *uttid;
     cont_ad_t *cont;
     char word[256];
