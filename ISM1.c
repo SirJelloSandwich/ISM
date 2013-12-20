@@ -311,10 +311,7 @@ int main(int argc, char *argv[])
 
     E_INFO("%s COMPILED ON: %s, AT: %s\n\n", argv[0], __DATE__, __TIME__);
 
-    if (cmd_ln_str_r(config, "-infile") != NULL) {
-	recognize_from_file();
-    } else {
-
+    
         /* Make sure we exit cleanly (needed for profiling among other things) */
 	/* Signals seem to be broken in arm-wince-pe. */
 #if !defined(GNUWINCE) && !defined(_WIN32_WCE) && !defined(__SYMBIAN32__)
@@ -324,7 +321,7 @@ int main(int argc, char *argv[])
         if (setjmp(jbuf) == 0) {
 	    recognize_from_microphone();
 	}
-    }
+    
 
     ps_free(ps);
     return 0;
