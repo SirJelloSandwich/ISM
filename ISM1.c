@@ -130,7 +130,7 @@ print_word_times(int32 start)
 		iter = ps_seg_next (iter);
 	}
 }
-* Sleep for specified msec */
+/* Sleep for specified msec */
 static void
 sleep_msec(int32 ms)
 {
