@@ -168,18 +168,16 @@ recognize_from_microphone()
     char word[256];
 
     if (
-			(
-				ad = ad_open_dev
-					(
-					cmd_ln_str_r(config, "-adcdev"),(int)cmd_ln_float32_r(config, "-samprate")
-					)
-			) == NULL
-		)E_FATAL("Failed to open audio device\n");
+	(
+	ad = ad_open_dev
+	(
+	cmd_ln_str_r
+	(config, "-adcdev"),(int)cmd_ln_float32_r(config, "-samprate"))) == NULL)
+	E_FATAL("Failed to open audio device\n");
 
     /* Initialize continuous listening module */
-    if (
-			(cont = cont_ad_init(ad, ad_read)) == NULL
-		) E_FATAL("Failed to initialize voice activity detection\n");
+    if ((cont = cont_ad_init(ad, ad_read)) == NULL) 
+    E_FATAL("Failed to initialize voice activity detection\n");
     if (ad_start_rec(ad) < 0)
         E_FATAL("Failed to start recording\n");
     if (cont_ad_calib(cont) < 0)
