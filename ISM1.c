@@ -128,7 +128,9 @@ print_word_times(int32 start)
 /*
  * Continuous recognition from a file
  */
-static void recognize_from_file() {
+static void 
+recognize_from_file() 
+{
     cont_ad_t *cont;
     ad_rec_t file_ad = {0};
     int16 adbuf[4096];
