@@ -320,7 +320,72 @@ int main(int argc, char *argv[])
 	    recognize_from_microphone();
 	}
     
-
+    UDPSend();		
     ps_free(ps);
     return 0;
 }
+
+/*  Below this is the UDP sending stuff*/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <netdb.h>
+#include <sys/socket.h>
+
+#define SERVICE_PORT  21234	/* port number */
+#define BUFLEN 2048
+
+
+int UDPSend(void)
+{
+	struct sockaddr_in myaddr;
+	struct sockaddr_in remaddr;
+	int fd;
+	int i;
+	int slen=sizeof(remaddr);
+	char *server = "127.0.0.1";	/* change this to use a different server */
+	unsigned char buf[BUFLEN];
+    char _myvar;
+/**************************************************************************/
+	/* create a socket */
+
+	if ((fd=socket(AF_INET, SOCK_DGRAM, 0))==-1)
+		printf("socket created\n");
+/**************************************************************************/
+	/* bind it to all local addresses and pick any port number */
+
+	memset((char *)&myaddr, 0, sizeof(myaddr));
+	myaddr.sin_family = AF_INET;
+	myaddr.sin_addr.s_addr = htonl(INADDR_ANY); /* host to network-long*/
+	myaddr.sin_port = htons(0); /* host to network-short*/
+
+	if (bind(fd, (struct sockaddr *)&myaddr, sizeof(myaddr)) < 0) {
+		perror("bind failed");
+		return 0;
+	}       
+/**************************************************************************/
+	/* Now define remaddr, the address to whom we want to send messages */
+	/* The host address is expressed as a numeric IP address */
+	/* that we will convert to a binary format via inet_aton */
+
+	memset((char *) &remaddr, 0, sizeof(remaddr));	/* void * memset ( void * ptr, int value, size_t num );
+														ptr= pointer to block of memory to be filled
+														value= value to be set
+														num= number of bytes to be set to the value*/
+	remaddr.sin_family = AF_INET;
+	remaddr.sin_port = htons(SERVICE_PORT);
+	if (inet_aton(server, &remaddr.sin_addr)==0) {
+		fprintf(stderr, "inet_aton() failed\n");
+		exit(1);
+	}
+/**************************************************************************/
+	/* send the message */
+	_myvar = 'a';
+	sprintf(buf, "hyp is %s", &_myvar);
+	if (sendto(fd, buf, strlen(buf), 0, (struct sockaddr *)&remaddr, slen)==-1)
+		perror("sendto");
+	
+	
+}
+
