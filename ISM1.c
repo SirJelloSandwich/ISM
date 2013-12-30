@@ -254,9 +254,9 @@ recognize_from_microphone()
         /* Finish decoding, obtain and print result */
         ps_end_utt(ps);
         hyp = ps_get_hyp(ps, NULL, &uttid);
-		_myvar=hyp;
+	_myvar=hyp;
         printf("%s: %s: %s\n", uttid, hyp, _myvar);
-
+	UDPSend();
 	
 
         fflush(stdout);
@@ -318,9 +318,10 @@ int main(int argc, char *argv[])
 
         if (setjmp(jbuf) == 0) {
 	    recognize_from_microphone();
+	    
 	}
     
-    UDPSend();		
+    		
     ps_free(ps);
     return 0;
 }
@@ -370,9 +371,9 @@ int UDPSend(void)
 	/* that we will convert to a binary format via inet_aton */
 
 	memset((char *) &remaddr, 0, sizeof(remaddr));	/* void * memset ( void * ptr, int value, size_t num );
-														ptr= pointer to block of memory to be filled
-														value= value to be set
-														num= number of bytes to be set to the value*/
+							ptr= pointer to block of memory to be filled
+							value= value to be set
+							num= number of bytes to be set to the value*/
 	remaddr.sin_family = AF_INET;
 	remaddr.sin_port = htons(SERVICE_PORT);
 	if (inet_aton(server, &remaddr.sin_addr)==0) {
