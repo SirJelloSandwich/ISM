@@ -345,7 +345,7 @@ int UDPSend(void)
 	int fd;
 	int i;
 	int slen=sizeof(remaddr);
-	char *server = "127.0.0.1";	/* change this to use a different server */
+	char *server = "192.168.2.62";	/* change this to use a different server */
 	unsigned char buf[BUFLEN];
        
 /**************************************************************************/
