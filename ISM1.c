@@ -325,7 +325,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-/*  Below this is the UDP sending stuff*/
+/************  Below this is the UDP sending stuff***************/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -346,7 +346,7 @@ int UDPSend(void)
 	int slen=sizeof(remaddr);
 	char *server = "127.0.0.1";	/* change this to use a different server */
 	unsigned char buf[BUFLEN];
-    char _myvar;
+       
 /**************************************************************************/
 	/* create a socket */
 
@@ -381,8 +381,8 @@ int UDPSend(void)
 	}
 /**************************************************************************/
 	/* send the message */
-	_myvar = 'a';
-	sprintf(buf, "hyp is %s", &_myvar);
+	
+	memcpy(buf, _myvar, BUFLEN)
 	if (sendto(fd, buf, strlen(buf), 0, (struct sockaddr *)&remaddr, slen)==-1)
 		perror("sendto");
 	
