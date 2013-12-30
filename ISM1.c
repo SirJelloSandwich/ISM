@@ -382,7 +382,7 @@ int UDPSend(void)
 /**************************************************************************/
 	/* send the message */
 	
-	memcpy(buf, _myvar, BUFLEN)
+	memcpy(buf, _myvar, BUFLEN);
 	if (sendto(fd, buf, strlen(buf), 0, (struct sockaddr *)&remaddr, slen)==-1)
 		perror("sendto");
 	
