@@ -34,17 +34,17 @@ using System.Windows.Shell;
 namespace BasicManipulation {
     
     
-    /// <summary>
-    /// App
-    /// </summary>
-    public partial class App : System.Windows.Application {
+   
+    public partial class App : System.Windows.Application 
+    
+    {
         
-        /// <summary>
-        /// InitializeComponent
-        /// </summary>
+        
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-        public void InitializeComponent() {
+
+        public void InitializeComponent()
+        {
             
             #line 4 "..\..\App.xaml"
             this.StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
@@ -53,17 +53,18 @@ namespace BasicManipulation {
             #line hidden
         }
         
-        /// <summary>
-        /// Application Entry Point.
-        /// </summary>
+        
         [System.STAThreadAttribute()]
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-        public static void Main() {
+
+        public static void Main() 
+        {
             BasicManipulation.App app = new BasicManipulation.App();
             app.InitializeComponent();
             app.Run();
         }
+
     }
 }
 

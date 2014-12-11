@@ -12,9 +12,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 
-
-
-
  
 namespace BasicManipulation
 {    
@@ -44,20 +41,22 @@ namespace BasicManipulation
         public double tanY;
         public double tanresult;
         public double angle;
+        public int a;
     }
 
     
       
     public partial class MainWindow : Window
     {   
-        //MyClass gh = new MyClass();
+        
         
         public MainWindow()
         {
             
             InitializeComponent();
         }
-                  
+
+        Window1 popup = new Window1();
 
                     void touchDown (object sender, TouchEventArgs e)
                     {
@@ -131,18 +130,15 @@ namespace BasicManipulation
 
                     public void open(object sender, RoutedEventArgs e)
                     {
-                        Window1 popup = new Window1();
+                        
 
                         popup.Show();
+                       
 
-                        //var host = new Window();
-
-                        //host.Content = popup;
-
-                       // host.Show();
+                        
                     }
 
-                    
+                      
 
     }     
 
